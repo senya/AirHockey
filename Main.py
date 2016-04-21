@@ -12,7 +12,7 @@ class Game:
     def __init__(self):
         """Constructor of the Game"""
         self._running = True
-        self.size = self.width, self.height = 640, 400
+        self.size = self.width, self.height = 640, 600
         # create main display - 640x400 window
         # try to use hardware acceleration
         self.screen = pygame.display.set_mode(self.size)#, pygame.HWSURFACE
@@ -23,8 +23,8 @@ class Game:
         self.clock = pygame.time.Clock()
         # set default tool
         self.tool = 'run'
-        self.player  = Player.Player(200,20,1, x=220, y=370 )
-        self.player2 = Player.Player(200,20,0, x=220, y=10 )
+        self.player  = Player.Player(1, x=220, y=370,r = 30 )
+        self.player2 = Player.Player(0, x=220, y=10,r = 30 )
         self.ball    = Ball.Ball(player1=self.player, player2=self.player2)
 
     def event_handler(self, event):

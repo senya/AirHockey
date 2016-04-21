@@ -9,11 +9,13 @@ class Ball:
 
     def render(self,game):
         pygame.draw.circle(game.screen,self.color,(int(self.x),int(self.y)),self.r)
+
     def update(self,game):
         self.check_hit(self.player1, game)
         self.check_hit(self.player2, game)
         self.x += self.Vx * game.delta
         self.y += self.Vy * game.delta
+
     def check_hit(self, player, game):
         color = [(230,51,51),(54,116,225)]
         if self.x+self.r>game.width:
@@ -28,11 +30,11 @@ class Ball:
         if self.y-self.r<0:
             self.y = self.r
             self.Vy = -self.Vy
-        if (self.x<=player.x+player.width) and (self.x>=player.x):
+        if (self.x<=player.x+player.r) and (self.x>=player.x):
             range = player.y-self.y # расстояние он верхней левой грани платформы до центра шарика
             if (range<0):
                 #шарик снизу платвормы
-                if abs(range+player.height) <= self.r:
+                if abs(range+player.r) <= self.r:
                     if (abs(player.vy)>0):
                         self.Vy = player.vy + abs(self.Vy)*abs(player.vy)/player.vy    #Считаем, что после удара скорость шарика = скорости платформы
                     else:
@@ -41,7 +43,7 @@ class Ball:
                         self.Vx = player.vx/2 + self.Vx
                     else:
                         self.Vx = self.Vx
-                    self.y = player.y + player.height + self.r
+                    self.y = player.y + player.r + self.r
                     self.color = color[player._team]
             else:
                 if (abs(range) <= self.r):
