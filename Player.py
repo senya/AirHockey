@@ -11,12 +11,15 @@ class Player():
         self._team = team
         self.keys1 = (pygame.K_LEFT,pygame.K_RIGHT,pygame.K_UP,pygame.K_DOWN,pygame.K_a,pygame.K_d,pygame.K_w,pygame.K_s)
         self.score = 0
+        self.weight = 30
+
     def render(self,game):
         color = [(230,51,51),(54,116,225)]
         """Draw Player on the Game window"""
         Object = game.font.render(str(self.score), True,color[self._team])
         game.screen.blit(Object,(game.width-100,game.height/2 + (self._team-1)*100))
         pygame.draw.circle(game.screen,self.color,(int(self.x),int(self.y)),self.r)
+
     def update(self,game):
         """Update Player state"""
         if game.pressed[self.keys1[self._team*4]]:
@@ -63,4 +66,9 @@ class Player():
                 self.vy = 0
             self.y = (self._team+1)*game.height/2 - self.r - (self._team)*(game.ethik);
 
+    def start_pos(self,game):
+        self.x = game.width/2
+        self.y = (game.height-self.r*2)*self._team + (self._team+1)*self.r*2
+        self.vx = 0
+        self.vy = 0
 

@@ -21,8 +21,8 @@ class Game:
         self.clock = pygame.time.Clock()
         # set default tool
         self.tool = 'run'
-        self.player  = Player.Player(1, x=self.width/2, y=370,r = 30 )
-        self.player2 = Player.Player(0, x=self.width/2, y=50,r = 30 )
+        self.player  = Player.Player(1, x=self.width/2, y=370,r = 30 )   # Синий нижний игрок
+        self.player2 = Player.Player(0, x=self.width/2, y=50,r = 30 )    # Красный верхний игрок
         self.ball    = Ball.Ball()
         self.ethik   = 10                                                  # Толщина отступов
         self.ecolor = (255,179,0)
